@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <button id="box0">发送请求</button>
+    <button id="box1">取消请求</button>
+</body>
+<script>
+    const bt0=document.getElementById('box0')
+    const bt1=document.getElementById('box1')
+    let cancel=null
+    const gettime=axios.create({
+            baseURL:'https://api.apiopen.top/api',
+            timeout:2000
+            })
+        
+    //发起请求
+    bt0.addEventListener('click',()=>{
+        //如果上一次请求还没得到回复，则直接取消上一次请求 (在浏览器中将网速设置为慢速3g测试)
+        if(cancel !==null) cancel()
+        gettime.get('/getTime',
+        {cancelToken:new axios.CancelToken(c=>{
+            cancel=c
+        }
+        )
+        }
+        ).then(response=>{
+            console.log(response.data.result.date)
+            //防止段时间内重复请求
+            cancel=null
+        })
+    }
+    )
+    //取消请求 (在浏览器中将网速设置为慢速3g测试)
+    bt1.addEventListener('click',()=>{
+        cancel()
+       
+    })
+</script>
+</html>

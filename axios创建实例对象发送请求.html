@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <button id="box0">点击获取时间</button>
+</body>
+<script>
+    const bt0=document.getElementById("box0")
+    const gettime=axios.create({
+            baseURL:'https://api.apiopen.top/api',
+            timeout:2000
+    })
+
+    bt0.addEventListener('click',function(){
+            gettime.get('/getTime').then(response=>{console.log(response.data.result.date)})
+    })
+</script>
+</html>

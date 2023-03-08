@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <button id="box0">GET</button>
+
+</body>
+<script>
+    const bts=document.querySelectorAll('button')
+    //默认配置
+    axios.defaults.method='GET'
+    axios.defaults.baseURL='http://localhost:3000'
+    bts[0].addEventListener('click',function(){
+        axios({
+            url:'/posts'
+        }).then(response=>{
+            console.log(response)
+        })
+    })
+    
+
+</script>
+</html>

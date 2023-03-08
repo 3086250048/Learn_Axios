@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <button id="box0">GET</button>
+    <button id="box1">POST</button>
+    <button id="box2">PUT</button>
+    <button id="box4">DELETE</button>
+</body>
+<script>
+    const bt0=document.getElementById('box0')
+    bt0.addEventListener('click',function(){
+        //发送ajax请求
+        axios({
+            // 请求类型
+            method:'GET',
+            //URL
+            url:'http://localhost:3000/posts/1'
+        }).then(response=>{console.log(response)})
+    })
+    const bt1=document.getElementById('box1')
+    bt1.addEventListener('click',function(){
+        //发送ajax请求
+        axios({
+            // 请求类型
+            method:'POST',
+            //URL
+            url:'http://localhost:3000/posts',
+            data:{
+                title:'今天星期2',
+                author:'czz'
+            }
+        }).then(response=>{console.log(response)})
+    })
+
+    const bt2=document.getElementById('box2')
+    bt2.addEventListener('click',function(){
+        //发送ajax请求
+        axios({
+            // 请求类型
+            method:'PUT',
+            //URL
+            url:'http://localhost:3000/posts/4',
+            data:{
+                title:'今天星期6',
+                author:'czz'
+            }
+        }).then(response=>{console.log(response)})
+    })
+
+    const bt4=document.getElementById('box4')
+    bt4.addEventListener('click',function(){
+        //发送ajax请求
+        axios({
+            // 请求类型
+            method:'DELETE',
+            //URL
+            url:'http://localhost:3000/posts/4',
+        }).then(response=>{console.log(response)})
+    })
+</script>
+</html>

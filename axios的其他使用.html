@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <button id="box0">GET</button>
+    <button id="box1">POST</button>
+    <button id="box2">PUT</button>
+    <button id="box4">DELETE</button>
+</body>
+<script>
+    const bts=document.querySelectorAll('button')
+    bts[0].addEventListener('click',function(){
+        axios.request({
+            method:'GET',
+            url:'http://localhost:3000/posts'
+
+        }).then(response=>{
+            console.log(response)
+        })
+
+    })
+
+    bts[1].addEventListener('click',function(){
+        axios.post(
+            'http://localhost:3000/comments',
+            {
+                "body":"你好",
+                "postID":2
+            }
+
+        ).then(response=>{
+            console.log(response.data)
+        })
+
+    })
+</script>
+</html>
